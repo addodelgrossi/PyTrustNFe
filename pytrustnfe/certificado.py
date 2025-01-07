@@ -3,7 +3,9 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import tempfile
-from OpenSSL import crypto
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.primitives.serialization import pkcs12
+from cryptography.hazmat.backends import default_backend
 
 
 class Certificado(object):
@@ -20,13 +22,19 @@ class Certificado(object):
 
 
 def extract_cert_and_key_from_pfx(pfx, password):
-    pfx = crypto.load_pkcs12(pfx, password.encode())
-    # PEM formatted private key
-    key = crypto.dump_privatekey(crypto.FILETYPE_PEM, pfx.get_privatekey())
-    # PEM formatted certificate
-    cert = crypto.dump_certificate(crypto.FILETYPE_PEM, pfx.get_certificate())
-    return cert.decode(), key.decode()
+    private_key, certificate, additional_certificates = pkcs12.load_key_and_certificates(
+        pfx, password, backend=default_backend()
+    )
 
+    pem_key = private_key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.TraditionalOpenSSL,
+        encryption_algorithm=serialization.NoEncryption()
+    )
+
+    pem_cert = certificate.public_bytes(serialization.Encoding.PEM)    
+
+    return pem_cert.decode(), pem_key.decode()        
 
 def save_cert_key(cert, key):
     cert_temp = tempfile.mkstemp()[1]
