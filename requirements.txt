@@ -4,10 +4,10 @@ signxml ; python_version >= '3.7'
 lxml >= 4.2.1
 cryptography >= 44.0.0
 pyOpenSSL >= 22.1.0
-certifi >=  2018.1.18
+# certifi >=  2018.1.18
 
 # XmlSec
-xmlsec >= 1.3.13
+xmlsec >= 1.3.14
 
 # pytrustnfe dependencies
 Jinja2

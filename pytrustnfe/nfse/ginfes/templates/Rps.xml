@@ -7,36 +7,70 @@
         </IdentificacaoRps>
         <DataEmissao>{{ rps.data_emissao }}</DataEmissao>
         <NaturezaOperacao>{{ rps.natureza_operacao }}</NaturezaOperacao>
-        <RegimeEspecialTributacao>{{ rps.regime_tributacao }}</RegimeEspecialTributacao>
+        {% if rps.regime_tributacao is defined -%}
+            <RegimeEspecialTributacao>{{ rps.regime_tributacao }}</RegimeEspecialTributacao>
+        {% endif %}
         <OptanteSimplesNacional>{{ rps.optante_simples }}</OptanteSimplesNacional>
         <IncentivadorCultural>{{ rps.incentivador_cultural }}</IncentivadorCultural>
         <Status>{{ rps.status }}</Status>
+        {% if rps.numero_substituido is defined -%}
         <RpsSubstituido>
             <Numero>{{ rps.numero_substituido }}</Numero>
             <Serie>{{ rps.serie_substituido }}</Serie>
             <Tipo>{{ rps.tipo_substituido }}</Tipo>
         </RpsSubstituido>
+        {% endif %}
         <Servico>
             <Valores>
                 <ValorServicos>{{ rps.valor_servico }}</ValorServicos>
-                <ValorDeducoes>{{ rps.valor_deducao }}</ValorDeducoes>
-                <ValorPis>{{ rps.valor_pis }}</ValorPis>
-                <ValorCofins>{{ rps.valor_cofins }}</ValorCofins>
-                <ValorInss>{{ rps.valor_inss }}</ValorInss>
-                <ValorIr>{{ rps.valor_ir }}</ValorIr>
-                <ValorCsll>{{ rps.valor_csll }}</ValorCsll>
+                {% if rps.valor_deducao is defined -%}
+                    <ValorDeducoes>{{ rps.valor_deducao }}</ValorDeducoes>
+                {% endif %}
+                {% if rps.valor_pis is defined -%}
+                    <ValorPis>{{ rps.valor_pis }}</ValorPis>
+                {% endif %}
+                {% if rps.valor_cofins is defined -%}
+                    <ValorCofins>{{ rps.valor_cofins }}</ValorCofins>
+                {% endif %}
+                {% if rps.valor_inss is defined -%}
+                    <ValorInss>{{ rps.valor_inss }}</ValorInss>
+                {% endif %}
+                {% if rps.valor_ir is defined -%}
+                    <ValorIr>{{ rps.valor_ir }}</ValorIr>
+                {% endif %}
+                {% if rps.valor_csll is defined -%}
+                    <ValorCsll>{{ rps.valor_csll }}</ValorCsll>
+                {% endif %}
                 <IssRetido>{{ rps.iss_retido }}</IssRetido>
-                <ValorIss>{{ rps.valor_iss }}</ValorIss>
-                <ValorIssRetido>{{ rps.valor_iss_retido }}</ValorIssRetido>
-                <OutrasRetencoes>{{ rps.outras_retencoes }}</OutrasRetencoes>
-                <BaseCalculo>{{ rps.base_calculo }}</BaseCalculo>
-                <Aliquota>{{ rps.aliquota_issqn }}</Aliquota>
-                <ValorLiquidoNfse>{{ rps.valor_liquido_nfse }}</ValorLiquidoNfse>
-                <DescontoIncondicionado>{{ rps.desconto_incondicionado }}</DescontoIncondicionado>
-                <DescontoCondicionado>{{ rps.desconto_condicionado }}</DescontoCondicionado>
+                {% if rps.valor_iss is defined -%}
+                    <ValorIss>{{ rps.valor_iss }}</ValorIss>
+                {% endif %}
+                {% if rps.valor_iss_retido is defined -%}
+                    <ValorIssRetido>{{ rps.valor_iss_retido }}</ValorIssRetido>
+                {% endif %}
+                {% if rps.outras_retencoes is defined -%}
+                    <OutrasRetencoes>{{ rps.outras_retencoes }}</OutrasRetencoes>
+                {% endif %}
+                {% if rps.base_calculo is defined -%}
+                    <BaseCalculo>{{ rps.base_calculo }}</BaseCalculo>
+                {% endif %}
+                {% if rps.aliquota_issqn is defined -%}
+                    <Aliquota>{{ rps.aliquota_issqn }}</Aliquota>
+                {% endif %}
+                {% if rps.valor_liquido_nfse is defined -%}
+                    <ValorLiquidoNfse>{{ rps.valor_liquido_nfse }}</ValorLiquidoNfse>
+                {% endif %}
+                {% if rps.desconto_incondicionado is defined -%}
+                    <DescontoIncondicionado>{{ rps.desconto_incondicionado }}</DescontoIncondicionado>
+                {% endif %}
+                {% if rps.desconto_condicionado is defined -%}
+                    <DescontoCondicionado>{{ rps.desconto_condicionado }}</DescontoCondicionado>
+                {% endif %}
             </Valores>
             <ItemListaServico>{{ rps.codigo_servico }}</ItemListaServico>
-            <CodigoCnae>{{ rps.cnae_servico }}</CodigoCnae>
+            {% if rps.cnae_servico is defined -%}
+                <CodigoCnae>{{ rps.cnae_servico }}</CodigoCnae>
+            {% endif %}            
             <CodigoTributacaoMunicipio>{{ rps.codigo_tributacao_municipio }}</CodigoTributacaoMunicipio>
             <Discriminacao>{{ rps.descricao }}</Discriminacao>
             <CodigoMunicipio>{{ rps.codigo_municipio }}</CodigoMunicipio>

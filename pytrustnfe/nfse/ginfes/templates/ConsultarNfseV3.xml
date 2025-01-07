@@ -5,4 +5,12 @@
         <tipos:InscricaoMunicipal>{{ consulta.inscricao_municipal }}</tipos:InscricaoMunicipal>
     </Prestador>
     <NumeroNfse>{{ consulta.numero_nfse }}</NumeroNfse>
+
+    {% if consulta.data_inicial %}
+        <PeriodoEmissao>
+            <DataInicial>{{ consulta.data_inicial }}</DataInicial>
+            <DataFinal>{{ consulta.data_final }}</DataFinal>
+        </PeriodoEmissao>
+    {% endif %}
+
 </ConsultarNfseEnvio>
