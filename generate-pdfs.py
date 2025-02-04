@@ -9,10 +9,13 @@ from pytrustnfe.certificado import Certificado
 from pytrustnfe.nfse.ginfes import consultar_nfse_por_rps
 import re
 import time
+import unicodedata
 
 def sanitize_filename(name):
     name = name.strip()
+    name = unicodedata.normalize('NFKD', name).encode('ascii', 'ignore').decode('ascii')
     name = re.sub(r'[^\w\-]', '_', name)
+    name = name.lower()
     return name
 
 def download_note_pdf(verification_id, note_number, file_name, output_dir="output"):
@@ -120,7 +123,7 @@ if __name__ == "__main__":
                 file_name=file_name
             )
 
-            print('waiting 3 seconds...')
+            print('waiting 3 seconds...', fantasia_sanitized)
             time.sleep(3)
 
 
